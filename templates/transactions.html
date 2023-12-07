@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Transactions</title>
+    <style>
+      /* Add your styling here */
+      .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 10px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>File Transactions</h1>
+    <table>
+      <tr>
+        <th>Filename</th>
+        <th>Action</th>
+        <th>Timestamp</th>
+      </tr>
+      {% for transaction in transactions %}
+      <tr>
+        <td>{{ transaction.filename }}</td>
+        <td>{{ transaction.action }}</td>
+        <td>{{ transaction.timestamp }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="{{ url_for('list_files') }}" class="btn">View Files</a>
+  </body>
+</html>

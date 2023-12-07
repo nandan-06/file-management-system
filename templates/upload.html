@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .redirect {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 10px 0;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/upload_files" method="post" enctype="multipart/form-data">
+      <label for="file">Upload files here:</label>
+      <input type="file" name="files" id="file" multiple />
+      <input type="submit" value="Upload Files" />
+    </form>
+
+    <a href="{{ url_for('list_files') }}" class="redirect">List File</a>
+  </body>
+</html>

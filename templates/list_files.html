@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>File List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .upload-button {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 10px 0;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Available Files</h1>
+    <table>
+      <tr>
+        <th>File Name</th>
+        <th>Size (Bytes)</th>
+        <th>Format</th>
+        <th>Creation Date & Time</th>
+        <th>Download</th>
+        <th>Delete</th>
+      </tr>
+      {% for filename, size, format, creation_time in files %}
+      <tr>
+        <td>{{ filename }}</td>
+        <td>{{ size }}</td>
+        <td>{{ format }}</td>
+        <td>{{ creation_time }}</td>
+        <td>
+          <a href="{{ url_for('download_files', filename=filename) }}"
+            >Download</a
+          >
+        </td>
+        <td>
+          <form
+            action="{{ url_for('delete_files', filename=filename) }}"
+            method="post"
+            onsubmit="return confirm('Are you sure?');"
+          >
+            <input type="submit" value="Delete" />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <div>
+      <a href="{{ url_for('upload_files') }}" class="upload-button"
+        >Upload File</a
+      >
+      <a href="{{ url_for('get_transactions') }}" class="upload-button"
+        >Get transactions</a
+      >
+      <a href="{{ url_for('logout') }}" class="upload-button">Logout</a>
+    </div>
+  </body>
+</html>
